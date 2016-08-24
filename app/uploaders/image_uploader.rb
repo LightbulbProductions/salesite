@@ -9,7 +9,11 @@
   # Choose what kind of storage to use for this uploader:
    #storage :file
    #storage :fog
-   storage :dropbox
+  if Rails.env.production?
+    storage :dropbox
+  else 
+    storage :file
+  end
   
   
 
@@ -28,19 +32,23 @@
   # end
 
   # Process files as they are uploaded:
-  # process :scale => [200, 300]
+  process :resize_to_fill => [600, 600]
   #
   # def scale(width, height)
   #   # do something
   # end
 
   # Create different versions of your uploaded files:
+  #version :medium do
+    #process :resize_to_fill => [400,400]
+  #end
+  
   version :thumb do
     process resize_to_fill: [280, 280]
   end
 
   version :small_thumb, from_version: :thumb do
-    process resize_to_fill: [20, 20]
+    process resize_to_fill: [50, 50]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
