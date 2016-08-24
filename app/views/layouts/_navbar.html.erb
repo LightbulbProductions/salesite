@@ -1,27 +1,28 @@
 <nav class="navbar navbar-full navbar-dark bg-inverse">
-   
-  <nav class="nav nav-inline">
-   <a class="navbar-brand" href="/">Buy My Stuff</a>
-   
+
+  <a class="navbar-brand" href="/">Buy My Stuff</a>
   <ul class="nav navbar-nav">
-    <li><%= link_to "Contact", pages_contact_path %></li>
-    <li><%= link_to "About", pages_about_path %></li>
-  </ul>
-  
-    <ul class="nav navbar-nav navbar-right">
+    <li class="nav-item active">
+      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" <%= link_to "About", pages_about_path %></a>
+    </li>
+    <li class="nav-item">
+     <a class="nav-link" <%= link_to "Contact", pages_contact_path %></a>
+    </li>
       <% if user_signed_in? %>
-      <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-      <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+      <li class="nav-item"><a class="nav-link" <%= link_to "Manage Listings", seller_path %></a></li>
+       <li class="nav-item"><a class="nav-link" <%= link_to "Edit Profile", edit_user_registration_path %></a></li>
+      <li class="nav-item"><a class="nav-link pull-right" <%= link_to "Sign Out", destroy_user_session_path, method: :delete %></a></li>
+       
       <% else %>
-      <li><%= link_to "Sign Up", new_user_registration_path %></li>
-      <li><%= link_to "Sign In", new_user_session_path %></li>
+      <li class="nav-item"><a class="nav-link"<%= link_to "Sign Up", new_user_registration_path %></a></li>
+      <li class="nav-item"><a class="nav-link"<%= link_to "Sign In", new_user_session_path %></a></li>
       <% end %>
-    </ul>
-    
+  </ul>
   <form class="form-inline pull-xs-right">
     <input class="form-control" type="text" placeholder="Search">
     <button class="btn btn-outline-success" type="submit">Search</button>
   </form>
-  </nav>
- 
 </nav>
